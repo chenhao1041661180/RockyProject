@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.jaeger.statusbaruitl:library:1.2.7'
+    compile 'com.android.support:support-v4:25.0.1'
+    //注解
+    compile 'com.jakewharton:butterknife:8.5.1'
+    //图片处理
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //适配器
+    compile 'com.zhy:base-rvadapter:3.0.3'
+    //EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //网络请求
+    compile 'com.lzy.net:okgo:+'        //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okrx:+'        //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okserver:+'    //版本号使用 + 可以自动引用最新版
+    //属性动画兼容库
+    compile 'com.nineoldandroids:library:2.4.0'
+    //图片轮播
+//    compile 'com.youth.banner:banner:1.4.2'
+//    //图片轮播
+//    compile 'com.daimajia.slider:library:1.1.5@aar'
+    // Logger日志
+    compile 'com.orhanobut:logger:1.8'
+    // fastjson.
+    compile 'com.alibaba:fastjson:1.1.52.android'
+    compile 'com.google.zxing:core:3.2.1'
+
+}

@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.rocky.rockyproject"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+    compile project(':xrecyclerview')
+    compile project(':Utility')
+    compile "com.android.support:design:25.0.0"
+    compile "com.android.support:support-v4:25.0.0"
+    compile 'com.android.support:recyclerview-v7:25.0.0'
+    //retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    //适配器
+    compile 'com.zhy:base-rvadapter:3.0.3'
+    //EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //注解
+    compile 'com.jakewharton:butterknife:8.4.0'
+    //图片加载框架
+    compile 'com.github.bumptech.glide:glide:+'
+    //日志打印工具
+    compile 'com.orhanobut:logger:+'
+    //json解析
+//    compile 'com.alibaba:fastjson:1.2.21'
+    // fastjson.
+//    compile 'com.alibaba:fastjson:1.1.52.android'
+    compile 'com.lzy.net:okgo:+'        //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okrx:+'        //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okserver:+'    //版本号使用 + 可以自动引用最新版
+    //底部导航栏
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.2.0'
+}

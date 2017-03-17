@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/shape_wait_dialog"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:indeterminateDrawable="@anim/loading1"
+        android:indeterminateDuration="1200" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:text="正在加载..." />
+</LinearLayout>

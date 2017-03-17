@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/dgl"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgm"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgn"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgo"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgp"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgq"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgr"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgs"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgt"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgu"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgv"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/dgw"
+        android:duration="100" />
+</animation-list>
