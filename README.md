@@ -2,10 +2,11 @@
 用于学习创建的项目,包括MVP、RxJava、Retrofit、Okgo/okHttpUtils、MVVM等;后续慢慢添加功能.<br></br>
 ### BaseActivity、BaseFragment基类使用MVVM模式。(使用方法未说明，基本都能看懂啦~ ~)<br></br>
 * BaseActivity
-  * BaseListActivity:列表使用
+  *BaseListActivity:列表使用
     *BaseDetailActivity:除列表外其他类使用
+<br></br>
 * BaseFragment
-  * BaseListFragment:列表使用
+  *BaseListFragment:列表使用
     *BaseDetailFragment:除列表外其他类使用
     <br></br>
 ### 感谢开源<br></br>  
