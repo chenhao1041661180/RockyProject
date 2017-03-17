@@ -3,10 +3,10 @@ package com.jungle.utility.utils;
 /**
  * Object工具类
  * <p/>
- * 创 建 人：陈浩
+ * 创 建 人：Rocky
  * 创建时间：2017-03-10
  * 版 本 号：V1.0
- * 修 改 人：陈浩（2017-03-10）
+ * 修 改 人：Rocky（2017-03-10）
  */
 public class ObjectUtils {
 

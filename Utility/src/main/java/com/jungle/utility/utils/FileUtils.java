@@ -1206,7 +1206,7 @@ public class FileUtils {
      *
      * @param file 文件
      * @return 文件大小
-     * @throws Exception 创建人：陈浩（2015-9-22）
+     * @throws Exception 创建人：Rocky（2015-9-22）
      */
     @SuppressWarnings("resource")
     private static long getFileSize(File file) throws Exception {

@@ -13,7 +13,7 @@ import com.jungle.utility.R;
 import com.jungle.utility.base.BaseApplication;
 
 /**
- * 功能描述：
+ * 功能描述：Activity基类
  * <p>
  * 创 建 人：Rocky
  * 创建时间：2017-03-08

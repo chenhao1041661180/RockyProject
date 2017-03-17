@@ -17,10 +17,10 @@ import com.jungle.utility.databinding.ActBasicImageBinding;
 /**
  * 功能描述：查看图片
  * <p/>
- * 创 建 人：吴水平
+ * 创 建 人：Rocky
  * 创建时间：2016-11-01
  * 版 本 号：V1.0
- * 修 改 人：陈浩（2016-11-17）
+ * 修 改 人：Rocky（2016-11-17）
  */
 public class ImageActivity extends BaseDetailActivity<ActBasicImageBinding> {
     // 放大的view

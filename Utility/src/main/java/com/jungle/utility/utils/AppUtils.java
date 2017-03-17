@@ -30,10 +30,10 @@ import java.util.UUID;
 /**
  * 功能描述：App工具类
  * <p/>
- * 创 建 人：陈浩
+ * 创 建 人：Rocky
  * 创建时间：2017-03-10
  * 版 本 号：V1.0
- * 修 改 人：陈浩（2017-03-10）
+ * 修 改 人：Rocky（2017-03-10）
  */
 public class AppUtils {
 
@@ -381,7 +381,7 @@ public class AppUtils {
      * @param packageName 包名
      * @param key         mateData的key
      * @return 信息
-     * 创建人:徐晓健（2016-8-1）
+     * 创建人:Rocky（2016-8-1）
      */
     public static String getMateData(Context context, String packageName, String key) {
         String channel = "";
@@ -401,7 +401,7 @@ public class AppUtils {
      * @param archiveFilePath 路径名
      * @param key             mateData的key
      * @return 信息
-     * 创建人:徐晓健（2016-8-1）
+     * 创建人:Rocky（2016-8-1）
      */
     public static String getMateDataByCard(Context context, String archiveFilePath, String key) {
         String channel = "";
@@ -417,7 +417,7 @@ public class AppUtils {
     /**
      * 获取当前的显示的activity
      *
-     * @return 创建人：陈浩（2016年8月19日）
+     * @return 创建人：Rocky（2016年8月19日）
      * 修改人：
      */
     public static String getClassName(Context context) {

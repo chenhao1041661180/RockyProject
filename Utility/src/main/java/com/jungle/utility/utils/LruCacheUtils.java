@@ -18,7 +18,7 @@ import java.io.Serializable;
 /**
  * LruCache工具类
  * <p/>
- * 创建人：陈浩
+ * 创建人：Rocky
  * 创建时间：2017年2月9日
  * 修改人：
  */
