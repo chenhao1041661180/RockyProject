@@ -5,18 +5,16 @@ import android.databinding.ViewDataBinding;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.jungle.utility.R;
 import com.jungle.utility.databinding.ActivityBaseBinding;
-import com.jungle.utility.interf.PerfectClickListener;
 import com.jungle.utility.utils.ResourceUtils;
+import com.weavey.loading.lib.LoadingLayout;
 
 /**
  * 功能描述：
@@ -30,9 +28,9 @@ public class BaseListActivity<V extends ViewDataBinding> extends BaseActivity {
     //Toolbar
     private Toolbar mToolbar;
     //初始化控件
-    private LinearLayout llProgressBar;
-    private View error_refresh;
-    private View progressView;
+//    private LinearLayout llProgressBar;
+    //    private View error_refresh;
+//    private View progressView;
     // 布局view
     protected V bindingView;
     //baseBinding
@@ -42,6 +40,7 @@ public class BaseListActivity<V extends ViewDataBinding> extends BaseActivity {
 
     /**
      * 初始化bundle
+     *
      * @param savedInstanceState Bundle
      */
     @Override
@@ -59,31 +58,35 @@ public class BaseListActivity<V extends ViewDataBinding> extends BaseActivity {
             mContainer.addView(bindingView.getRoot());
             getWindow().setContentView(mBaseBinding.getRoot());
             //判断是否已经加载进入stubProgressBar
-            if (!mBaseBinding.stubProgressBar.isInflated()) {
-                progressView = mBaseBinding.stubProgressBar.getViewStub().inflate();
-                llProgressBar = (LinearLayout) getView(progressView, R.id.ll_progress_bar);
-                ImageView img = (ImageView) getView(progressView, R.id.img_progress);
-                // 加载动画
-                mAnimationDrawable = (AnimationDrawable) img.getDrawable();
-                // 默认进入页面就开启动画
-                if (!mAnimationDrawable.isRunning()) {
-                    mAnimationDrawable.start();
-                }
+            ImageView imageView = getView(mBaseBinding.llLoadinglayout.getGlobalLoadingPage(), R.id.img_progress);
+            // 加载动画
+            mAnimationDrawable = (AnimationDrawable) imageView.getDrawable();
+            // 默认进入页面就开启动画
+            if (!mAnimationDrawable.isRunning()) {
+                mAnimationDrawable.start();
             }
+            mBaseBinding.llLoadinglayout.setOnReloadListener(new LoadingLayout.OnReloadListener() {
+                @Override
+                public void onReload(View v) {
+                    showLoading();
+                    onRefresh();
+                }
+            });
             //处理Toolbar
             if (hasToolbar()) {
                 initToolbar();
             } else {
                 mBaseBinding.toolBar.setVisibility(View.GONE);
             }
-//            showContentView();
-            if (isShowStatusBar()){
+
+            if (isShowStatusBar()) {
                 // 设置透明状态栏
                 StatusBarUtil.setColor(this, ResourceUtils.getColor(showStatusBarColor()), 0);
             }
-            bindingView.getRoot().setVisibility(View.GONE);
+//            bindingView.getRoot().setVisibility(View.GONE);
         }
     }
+
     /**
      * 设置标题
      *
@@ -137,89 +140,90 @@ public class BaseListActivity<V extends ViewDataBinding> extends BaseActivity {
      * 显示加载中视图
      */
     protected void showLoading() {
-        if (llProgressBar.getVisibility() != View.VISIBLE) {
-            llProgressBar.setVisibility(View.VISIBLE);
-        }
+        //加载中
+        mBaseBinding.llLoadinglayout.setStatus(LoadingLayout.Loading);
         // 开始动画
         if (!mAnimationDrawable.isRunning()) {
             mAnimationDrawable.start();
         }
+        //隐藏
         if (bindingView.getRoot().getVisibility() != View.GONE) {
             bindingView.getRoot().setVisibility(View.GONE);
         }
-        if (!mBaseBinding.stubErrorRefresh.isInflated()) {
-            View view = mBaseBinding.stubErrorRefresh.getViewStub().inflate();
-            error_refresh = getView(view, R.id.ll_error_refresh);
-            showErrorView();
-        } else {
-            showErrorView();
-        }
+
     }
 
     /**
      * 显示加载完成视图
      */
     protected void showContentView() {
-        if (llProgressBar.getVisibility() != View.GONE) {
-            llProgressBar.setVisibility(View.GONE);
-        }
-        if (progressView.getVisibility() != View.GONE) {
-            progressView.setVisibility(View.GONE);
-        }
         // 停止动画
         if (mAnimationDrawable.isRunning()) {
             mAnimationDrawable.stop();
         }
-        //判断是否将布局加载进来
-        if (!mBaseBinding.stubErrorRefresh.isInflated()) {
-            View view = mBaseBinding.stubErrorRefresh.getViewStub().inflate();
-            error_refresh = getView(view, R.id.ll_error_refresh);
-            showErrorView();
-        } else {
-            showErrorView();
-        }
+        //加载成功
+        mBaseBinding.llLoadinglayout.setStatus(LoadingLayout.Success);
+        //显示
         if (bindingView.getRoot().getVisibility() != View.VISIBLE) {
             bindingView.getRoot().setVisibility(View.VISIBLE);
         }
+
     }
 
     /**
      * 显示加载失败视图
      */
     protected void showError() {
-        if (llProgressBar.getVisibility() != View.GONE) {
-            llProgressBar.setVisibility(View.GONE);
-        }
         // 停止动画
         if (mAnimationDrawable.isRunning()) {
             mAnimationDrawable.stop();
         }
-        if (!mBaseBinding.stubErrorRefresh.isInflated()) {
-            View view = mBaseBinding.stubErrorRefresh.getViewStub().inflate();
-            error_refresh = getView(view, R.id.ll_error_refresh);
-            error_refresh.setOnClickListener(new PerfectClickListener() {
-                @Override
-                protected void onNoDoubleClick(View v) {
-                    showLoading();
-                    onRefresh();
-                }
-            });
-        }
+        mBaseBinding.llLoadinglayout.setStatus(LoadingLayout.Error);//加载失败
+        //隐藏
         if (bindingView.getRoot().getVisibility() != View.GONE) {
             bindingView.getRoot().setVisibility(View.GONE);
         }
     }
 
     /**
-     * 显示加载失败的view
+     * 无数据
      */
-    private void showErrorView() {
-        if (error_refresh.getVisibility() != View.VISIBLE) {
-            error_refresh.setVisibility(View.VISIBLE);
-        } else {
-            error_refresh.setVisibility(View.GONE);
+    protected void showNoData() {
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        mBaseBinding.llLoadinglayout.setStatus(LoadingLayout.Empty);//无数据
+        //隐藏
+        if (bindingView.getRoot().getVisibility() != View.GONE) {
+            bindingView.getRoot().setVisibility(View.GONE);
         }
     }
+
+    /**
+     * 无网络
+     */
+    protected void showNoNetwork() {
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        mBaseBinding.llLoadinglayout.setStatus(LoadingLayout.No_Network);//无网络
+        //隐藏
+        if (bindingView.getRoot().getVisibility() != View.GONE) {
+            bindingView.getRoot().setVisibility(View.GONE);
+        }
+    }
+    /**
+     * 显示加载失败的view
+     */
+//    private void showErrorView() {
+//        if (error_refresh.getVisibility() != View.VISIBLE) {
+//            error_refresh.setVisibility(View.VISIBLE);
+//        } else {
+//            error_refresh.setVisibility(View.GONE);
+//        }
+//    }
 
     /**
      * 失败后点击刷新

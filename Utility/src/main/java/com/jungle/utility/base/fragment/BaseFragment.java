@@ -33,6 +33,17 @@ public class BaseFragment extends Fragment {
     protected <T extends View> T getView(int id) {
         return (T) getView().findViewById(id);
     }
+
+    /**
+     * 初始化控件
+     *
+     * @param id
+     * @param <T>
+     * @return
+     */
+    protected <T extends View> T getView(View view, int id) {
+        return (T) view.findViewById(id);
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

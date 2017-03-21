@@ -58,5 +58,5 @@ dependencies {
     // fastjson.
     compile 'com.alibaba:fastjson:1.1.52.android'
     compile 'com.google.zxing:core:3.2.1'
-
+    compile 'com.lai.weavey:loadinglayout:1.2'
 }
